@@ -12,17 +12,29 @@ public class Employee {
         this.year = year;
         this.id = id;
     }
+    public double calculateSalary() {
+        return 0;
+    }
+    public String getType() {
+        return "";
+    }
 }
 class FullTimeEmployee extends Employee {
     double baseSalary;
     double bonus;
-    double penaty;
-    public FullTimeEmployee(String name, int day,int month,int year,int id,double baseSalary, double bonus,double penaty) {
+    double penalty;
+    public FullTimeEmployee(String name, int day,int month,int year,int id,double baseSalary, double bonus,double penalty) {
         super(name,day,month,year,id);
         this.baseSalary = baseSalary;
         this.bonus = bonus;
-        this.penaty = penaty;
-    }  
+        this.penalty = penalty;
+    }
+    public double calculateSalary() {
+        return baseSalary + bonus - penalty;
+    }
+    public String getType() {
+        return "Full-Time";
+    }
 }
 class PartTimeEmployee extends Employee {
     double workingHours;
@@ -31,6 +43,12 @@ class PartTimeEmployee extends Employee {
         super(name,day,month,year,id);
         this.workingHours = workingHours;
         this.hourlyRate = hourlyRate;
+    }
+    public double calculateSalary() {
+        return workingHours * hourlyRate;
+    }
+    public String getType() {
+        return "Part-time";
     }
 }
 class Main {
@@ -55,7 +73,7 @@ class Main {
         }
         }
         for(Employee e : arr) {
-            System.out.println(e.id + " "+e.name);
+            System.out.println(e.name + " - "+ e.getType() + " - " + e.calculateSalary());
         }
     }
 }
